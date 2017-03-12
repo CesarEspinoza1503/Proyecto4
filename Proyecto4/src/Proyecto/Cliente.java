@@ -3,16 +3,25 @@ package Proyecto;
  *
  * @author CESAR
  */
-public class Cliente extends Usuario{
+public class Cliente extends Persona{
     String direccion;//Dirrecion de residencia del usuario
-    int Frecuencia;//Contador para cuantas veces el cliente ha comprado
+    
     int num_contacto;//Numero telefonico o de movil
 
-    public Cliente(String direccion, int Frecuencia, int num_contacto, String username, String password, boolean isAdmin, String nombre) {
-        super(username, password, isAdmin, nombre);
+    public Cliente(String direccion,String nombre,int num_contacto) {
+        super(nombre);
         this.direccion = direccion;
-        this.Frecuencia = Frecuencia;
         this.num_contacto = num_contacto;
+    }
+
+    @Override
+    public String getNombre() {
+        return nombre;
+    }
+
+    @Override
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDireccion() {
@@ -21,14 +30,6 @@ public class Cliente extends Usuario{
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    public int getFrecuencia() {
-        return Frecuencia;
-    }
-
-    public void setFrecuencia(int Frecuencia) {
-        this.Frecuencia = Frecuencia;
     }
 
     public int getNum_contacto() {
@@ -41,7 +42,7 @@ public class Cliente extends Usuario{
 
     @Override
     public String toString() {
-        return "Cliente{" + "direccion=" + direccion + ", Frecuencia=" + Frecuencia + ", num_contacto=" + num_contacto + '}';
+        return "Cliente{" + "direccion=" + direccion + ", num_contacto=" + num_contacto + '}';
     } 
     
 }
