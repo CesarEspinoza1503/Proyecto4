@@ -1,0 +1,6 @@
+Pizza Hot Norte
+Pizza Hot Sur
+Pizza Hot Este
+Pizza Hot Noroeste
+Pizza Hot Oeste
+Pizza Hot Orginal

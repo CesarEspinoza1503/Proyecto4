@@ -1,7 +1,0 @@
-Alejandro Manzanares,15 Septiembre,332342342
-Sofia Alejandra,Residencial CentroAmerica,23424323
-Paola Guillen,Altos de Toncontin,23423454
-Luis Canales,Altos del Trapiche,23423423
-Francisco Alejandro,Las Colinas,2342134
-Alexander Figueroa,Las Hadas,21342134
-Luis Martinez,Las Colinas,12342134

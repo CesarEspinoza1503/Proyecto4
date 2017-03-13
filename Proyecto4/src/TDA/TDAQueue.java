@@ -16,7 +16,7 @@ public class TDAQueue {
     }
  
     
-    public void resize(){
+    private void resize(){
         Object[]temp = null;
         temp = new Object[current_capacity + current_capacity];
         for (int i = 0; i < current_capacity; i++) {

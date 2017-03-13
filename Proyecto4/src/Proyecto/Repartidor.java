@@ -11,19 +11,22 @@ package Proyecto;
  */
 public class Repartidor extends Persona {
     boolean available;
-    Orden ordenEntregar;
-    public Repartidor(String nombre) {
+    String restaurante;
+    
+    public Repartidor(String nombre,String restaurante) {
         super(nombre);
+        this.restaurante = restaurante;
         available = true;
     }
 
-    public Orden getOrdenEntregar() {
-        return ordenEntregar;
+    public String getRestaurante() {
+        return restaurante;
     }
 
-    public void setOrdenEntregar(Orden ordenEntregar) {
-        this.ordenEntregar = ordenEntregar;
+    public void setRestaurante(String restaurante) {
+        this.restaurante = restaurante;
     }
+    
 
     public boolean isAvailable() {
         return available;
@@ -34,17 +37,19 @@ public class Repartidor extends Persona {
     }
     
 
+    @Override
     public String getNombre() {
         return nombre;
     }
 
+    @Override
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     @Override
     public String toString() {
-        return "Repartidor{" + "available=" + available + '}';
+        return nombre;
     }
     
     

@@ -17,6 +17,15 @@ public class Restaurante {
 
     public Restaurante(String nombre) {
         this.nombre = nombre;
+        repartidores = new ArrayList();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public ArrayList<Repartidor> getRepartidores() {
@@ -25,6 +34,11 @@ public class Restaurante {
 
     public void addRepartidores(Repartidor repartidor) {
         this.repartidores.add(repartidor);
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
     
 }

@@ -19,31 +19,16 @@ import org.graphstream.graph.implementations.MultiGraph;
 public final class Graph {
     private final MultiGraph map;
     private final TDAVSArray colonias;
-    private final TDAVSArray clientes;
+    private final TDAVSArray restaurantes;
+    private final TDAVSArray repartidores;
+    
 
     public Graph() {
         map = null;
-        this.clientes = readFile();
-        this.colonias = setColonias();
-//        this.map = createGraph(this.colonias);
-//        for(Node n:this.map.getEachNode()) {
-//            n.addAttribute("ui.label", n.getId());
-//        }
-//        this.map.addAttribute("ui.stylesheet", "node { text-visibility-mode: normal; }");
-//        for(Edge e:this.map.getEachEdge()) {
-//             e.addAttribute("ui.label", e.getId());
-//        }
-//        this.map.addAttribute("ui.stylesheet", "node {\n" +
-//            "	size: 2px;\n" +
-//            "	fill-color: #777;\n" +
-//            "	text-mode: hidden;\n" +
-//            "	z-index: 0;\n" +
-//            "}");
-//        this.map.addAttribute("ui.stylesheet", "edge {\n" +
-//        "	shape: line;\n" +
-//        "	fill-color: #222;\n" +
-//        "	arrow-size: 4px, 3px;\n" +
-//        "}");
+        this.colonias = readColonias();
+        this.restaurantes = readRestaurantes();
+        this.repartidores = readRepartidores();
+        asignarRepartidores();
         
     }
     
@@ -51,20 +36,18 @@ public final class Graph {
         return map;
     }
 
-    public TDAVSArray getClientes() {
-        return clientes;
+    public TDAVSArray getRestaurantes() {
+        return restaurantes;
     }
+
+    public TDAVSArray getRepartidores() {
+        return repartidores;
+    }
+
+
 
     public TDAVSArray getColonias() {
         return colonias;
-    }
-    
-    public TDAVSArray setColonias() {
-        TDAVSArray temp = new TDAVSArray();
-        for (int i = 0; i < this.clientes.size(); i++) {
-            temp.insert(((Cliente)clientes.get(i)).getDireccion(), i);
-        }
-        return temp;
     }
     
     public ArrayList<Node> getNodes() {
@@ -75,42 +58,99 @@ public final class Graph {
         return temp;
     }
     
-    public TDAVSArray readFile(){
+    public TDAVSArray readColonias(){
         TDAVSArray temp= new TDAVSArray();
      
         FileReader fr = null;
         BufferedReader br= null;
         File file;
-        file = new File("./clientes.txt");
-        ArrayList<String> cliente = new ArrayList();
+        file = new File("./colonias.txt");
+        ArrayList<String> colonia = new ArrayList();
         try{
             fr = new FileReader(file);
             br = new BufferedReader(fr);
             
             String texto;
             String texto2;
-            String name,adress;
-            int phonenumber;
             while((texto=br.readLine())!=null){
                 texto2 =texto;
-                cliente.add(texto2);
+                colonia.add(texto2);
             }
-            String clients;
-            for (int i = 0; i < cliente.size(); i++) {
-                clients = cliente.get(i);
-                System.out.println(clients);
-                StringTokenizer st = new StringTokenizer(clients,",");
-                name = st.nextToken();
-                adress = st.nextToken();
-                phonenumber = Integer.parseInt(st.nextToken());
-                temp.insert(new Cliente(adress,name,phonenumber),i);
+            for (int i = 0; i < colonia.size(); i++) {
+                temp.insert(colonia.get(i),i);
             }  
         }
         catch(IOException | NumberFormatException e){
-                System.out.println("Error al leer");
+                System.out.println("Error al leer cool");
         }
         return temp;
     }
     
+    public TDAVSArray readRestaurantes(){
+        TDAVSArray temp= new TDAVSArray();
+     
+        FileReader fr = null;
+        BufferedReader br= null;
+        File file;
+        file = new File("./restaurantes.txt");
+        ArrayList<String> listaRestaurantes = new ArrayList();
+        try{
+            fr = new FileReader(file);
+            br = new BufferedReader(fr);
+            
+            String texto;
+            String texto2;
+            while((texto=br.readLine())!=null){
+                texto2 =texto;
+                listaRestaurantes.add(texto2);
+            }
+            for (int i = 0; i < listaRestaurantes.size(); i++) {
+                temp.insert(new Restaurante(listaRestaurantes.get(i)),i);
+            }  
+        }
+        catch(IOException | NumberFormatException e){
+                System.out.println("Error al leer rest");
+        }
+        return temp;
+    }
     
+    public TDAVSArray readRepartidores(){
+        TDAVSArray temp= new TDAVSArray();
+     
+        FileReader fr = null;
+        BufferedReader br= null;
+        File file;
+        file = new File("./repartidores.txt");
+        ArrayList<String> listaRepartidores = new ArrayList();
+        try{
+            fr = new FileReader(file);
+            br = new BufferedReader(fr);
+            
+            String texto;
+            String texto2;
+            while((texto=br.readLine())!=null){
+                texto2 =texto;
+                listaRepartidores.add(texto2);
+            }
+            String delivery;
+            for (int i = 0; i < listaRepartidores.size(); i++) {
+                delivery = listaRepartidores.get(i);
+                StringTokenizer st = new StringTokenizer(delivery,",");
+                temp.insert(new Repartidor(st.nextToken(),st.nextToken()),i);
+            }  
+        }
+        catch(IOException | NumberFormatException e){
+                System.out.println("Error al leer rep");
+        }
+        return temp;
+    }
+    public void asignarRepartidores(){
+        for (int i = 0; i < restaurantes.size(); i++) {
+            for (int j = 0; j < repartidores.size(); j++) {
+                if(((Repartidor)repartidores.get(j)).getRestaurante().equals(((Restaurante)restaurantes.get(i)).getNombre())){
+                    ((Restaurante)restaurantes.get(i)).addRepartidores((Repartidor)repartidores.get(j));
+                }
+            }
+        }
+    }
 }

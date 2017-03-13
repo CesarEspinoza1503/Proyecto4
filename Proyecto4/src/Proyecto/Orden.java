@@ -11,8 +11,14 @@ import java.util.Date;
  */
 public class Orden {
     //TDAvsList...
+    int codigo;
     String producto;
     double total;
+
+    public Orden(String producto, double total) {
+        this.producto = producto;
+        this.total = total;
+    }
 
     public String getProducto() {
         return producto;
@@ -27,6 +33,22 @@ public class Orden {
     }
 
     public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    
+    
+    public Orden(int codigo, String producto, double total) {
+        this.codigo = codigo;
+        this.producto = producto;
         this.total = total;
     }
     
