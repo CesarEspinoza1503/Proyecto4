@@ -8,9 +8,11 @@ package Proyecto;
 import TDA.TDAQueue;
 import TDA.TDAVSArray;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import org.graphstream.graph.Node;
 
 /**
  *
@@ -22,10 +24,13 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
+        this.lista_ordenes = new TDAQueue();
+        this.codigo_orden = lista_ordenes.getSize();
         initComponents();
         m = new Graph();
         restaurantes = m.getRestaurantes();
         repartidores = m.getRepartidores();
+        colonias = m.getColonias();
     }
 
     /**
@@ -69,6 +74,14 @@ public class Main extends javax.swing.JFrame {
         cb_AsignarRestaurante = new javax.swing.JComboBox<>();
         txtf_NombreRepartidor = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
+        retirarOrden = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        cb_colonia = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        ordenSiguiente = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -95,6 +108,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jButton4.setText("Retirar Orden");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Ver Rutas");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -186,8 +204,24 @@ public class Main extends javax.swing.JFrame {
         jLabel4.setText("Crear Orden");
 
         sp_CantidadPizza.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        sp_CantidadPizza.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sp_CantidadPizzaStateChanged(evt);
+            }
+        });
+        sp_CantidadPizza.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sp_CantidadPizzaMouseClicked(evt);
+            }
+        });
+        sp_CantidadPizza.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                sp_CantidadPizzaKeyReleased(evt);
+            }
+        });
 
         cb_tipoPizza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BACON CHEESEBURGER PIZZA", "6 QUESOS", "4 ESTACIONES", "CANADIENSE", "SUPREMA", "JAMON LOVER´S" }));
+        cb_tipoPizza.setSelectedIndex(1);
         cb_tipoPizza.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_tipoPizzaItemStateChanged(evt);
@@ -370,6 +404,72 @@ public class Main extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        jLabel9.setText("Retirar Orden");
+
+        jLabel10.setText("Orden Siguiente");
+
+        ordenSiguiente.setEditable(false);
+
+        jLabel11.setText("Colonia de entrega");
+
+        jButton8.setText("Continuar");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(19, 19, 19))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ordenSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel11))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jButton8))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(cb_colonia, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(78, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addGap(25, 25, 25)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(ordenSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cb_colonia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton8)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout retirarOrdenLayout = new javax.swing.GroupLayout(retirarOrden.getContentPane());
+        retirarOrden.getContentPane().setLayout(retirarOrdenLayout);
+        retirarOrdenLayout.setHorizontalGroup(
+            retirarOrdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        retirarOrdenLayout.setVerticalGroup(
+            retirarOrdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Pizza Delivery");
@@ -476,32 +576,16 @@ public class Main extends javax.swing.JFrame {
     private void cb_tipoPizzaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_tipoPizzaItemStateChanged
         // TODO add your handling code here:
         costo = 0;
+        Orden temp = new Orden();
         int pizza_selection = cb_tipoPizza.getSelectedIndex();
-        if (pizza_selection == 0) {
-            costo_pizza = 290;
-        }
-        if (pizza_selection == 1) {
-            costo_pizza = 280;
-        }
-        if (pizza_selection == 2) {
-            costo_pizza = 318;
-        }
-        if (pizza_selection == 3) {
-            costo_pizza = 280;
-        }
-        if (pizza_selection == 4) {
-            costo_pizza = 263;
-        }
-        if (pizza_selection == 5) {
-            costo_pizza = 263;
-        }
-        
+        costo_pizza = temp.pizzaCost(pizza_selection);
         costo += costo_pizza * (int)sp_CantidadPizza.getValue();
         label_costoTotal.setText(Double.toString(costo));
     }//GEN-LAST:event_cb_tipoPizzaItemStateChanged
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        Random r = new Random();
         String texto = "";
         texto = cb_tipoPizza.getSelectedItem().toString() + "\t" 
                 + (int)sp_CantidadPizza.getValue() + " Lps."
@@ -512,17 +596,25 @@ public class Main extends javax.swing.JFrame {
         if (cont_Palitroques >0) {
             texto += "\tHot Palitroques\t" + cont_Palitroques*6 + "Lps." + cont_Palitroques * 59;
         }
-        Orden orden = new Orden(codigo_orden, texto, Double.parseDouble(label_costoTotal.getText()));
+        Orden orden = new Orden("Orden #" + codigo_orden + r.nextInt(23) , texto, Double.parseDouble(label_costoTotal.getText()));
         codigo_orden ++;
         lista_ordenes.Queue(orden);
+        JOptionPane.showMessageDialog(null,"Orden creada.");
+        crearOrden.dispose();
+        cb_tipoPizza.setSelectedIndex(0);
+        sp_CantidadPizza.setValue(0);
+        cont_Alitas = 0;
+        cont_Palitroques = 0;
+        costo = 0;
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void cb_AsignarRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_AsignarRestauranteActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cb_AsignarRestauranteActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        // Crear Repartidor
         crearRepartidor.pack();
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (int i = 0; i < restaurantes.size(); i++) {
@@ -533,8 +625,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        
+        //Boton Crear Repartidor
         for (int i = 0; i < restaurantes.size(); i++) {
             if (((Restaurante)restaurantes.get(i)).getNombre().equals(cb_AsignarRestaurante.getSelectedItem().toString())) {
                 Repartidor nuevo_repartidor = new Repartidor(txtf_NombreRepartidor.getText(), cb_AsignarRestaurante.getSelectedItem().toString());
@@ -547,8 +638,49 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        //Mostrar Ruta
         m.showGraph(0, m.getMap());
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //Retirar Orden
+        if(lista_ordenes.getSize() == 0){
+            JOptionPane.showMessageDialog(null, "No hay ordenes pendientes.");
+        }else{
+            DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+            for (int i = 0; i < colonias.size(); i++) {
+                modelo.addElement(colonias.get(i));
+            }    
+            cb_colonia.setModel(modelo);
+            ordenSiguiente.setText(lista_ordenes.peek().toString());
+            retirarOrden.pack();
+            retirarOrden.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void sp_CantidadPizzaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sp_CantidadPizzaStateChanged
+        costo = 0;
+        Orden temp = new Orden();
+        int pizza_selection = cb_tipoPizza.getSelectedIndex();
+        costo_pizza = temp.pizzaCost(pizza_selection);
+        costo += costo_pizza * (int)sp_CantidadPizza.getValue();
+    }//GEN-LAST:event_sp_CantidadPizzaStateChanged
+
+    private void sp_CantidadPizzaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sp_CantidadPizzaMouseClicked
+        costo = 0;
+        Orden temp = new Orden();
+        int pizza_selection = cb_tipoPizza.getSelectedIndex();
+        costo_pizza = temp.pizzaCost(pizza_selection);
+        costo += costo_pizza * (int)sp_CantidadPizza.getValue();
+    }//GEN-LAST:event_sp_CantidadPizzaMouseClicked
+
+    private void sp_CantidadPizzaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sp_CantidadPizzaKeyReleased
+        costo = 0;
+        Orden temp = new Orden();
+        int pizza_selection = cb_tipoPizza.getSelectedIndex();
+        costo_pizza = temp.pizzaCost(pizza_selection);
+        costo += costo_pizza * (int)sp_CantidadPizza.getValue();
+    }//GEN-LAST:event_sp_CantidadPizzaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -561,7 +693,7 @@ public class Main extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -590,6 +722,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton bt_Cancelar;
     private javax.swing.JButton bt_Palitroques;
     private javax.swing.JComboBox<String> cb_AsignarRestaurante;
+    private javax.swing.JComboBox<String> cb_colonia;
     private javax.swing.JComboBox<String> cb_tipoPizza;
     private javax.swing.JDialog crearOrden;
     private javax.swing.JDialog crearRepartidor;
@@ -600,7 +733,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -608,8 +744,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToggleButton jToggleButton1;
@@ -618,6 +756,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JList<String> listaRepartidores;
     private javax.swing.JList<String> listaRestaurantes;
     private javax.swing.JDialog mainMenu;
+    private javax.swing.JTextField ordenSiguiente;
+    private javax.swing.JDialog retirarOrden;
     private javax.swing.JSpinner sp_CantidadPizza;
     private javax.swing.JTextField txtf_NombreRepartidor;
     private javax.swing.JDialog vistaRestaurantes;
@@ -630,6 +770,6 @@ public class Main extends javax.swing.JFrame {
     double costo_pizza;
     int cont_Alitas = 0;
     int cont_Palitroques = 0;
-    TDAQueue lista_ordenes = new TDAQueue();
-    int codigo_orden = 0;
+    TDAQueue lista_ordenes;
+    int codigo_orden;
 }
