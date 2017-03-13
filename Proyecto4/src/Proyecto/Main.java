@@ -166,7 +166,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel2.setText("Restaurantes");
 
-        jLabel3.setText("Repartidore Disponible");
+        jLabel3.setText("Repartidores Disponible");
 
         javax.swing.GroupLayout vistaRestaurantesLayout = new javax.swing.GroupLayout(vistaRestaurantes.getContentPane());
         vistaRestaurantes.getContentPane().setLayout(vistaRestaurantesLayout);
