@@ -7,14 +7,20 @@ package Proyecto;
 
 import TDA.TDAVSArray;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.StringTokenizer;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.MultiGraph;
+import org.graphstream.stream.ProxyPipe;
+import org.graphstream.ui.view.View;
+import org.graphstream.ui.view.Viewer;
 
 public final class Graph {
     private final MultiGraph map;
@@ -24,12 +30,19 @@ public final class Graph {
     
 
     public Graph() {
-        map = null;
         this.colonias = readColonias();
         this.restaurantes = readRestaurantes();
         this.repartidores = readRepartidores();
+        map = createGraph();
         asignarRepartidores();
+        for(Node n:this.map.getEachNode()) {
+            n.addAttribute("ui.label", n.getId());
+        }
         
+//        this.map.addAttribute("ui.stylesheet", "node { text-visibility-mode: hidden; }");
+        for(Edge e:this.map.getEachEdge()) {
+             e.addAttribute("ui.label", e.getId());
+        }
     }
     
     public MultiGraph getMap() {
@@ -152,5 +165,80 @@ public final class Graph {
                 }
             }
         }
+    }
+    
+    public void writeRepartidores(TDAVSArray repartidores){
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try{
+            fw = new FileWriter("./repartidor.txt",false);
+            bw = new BufferedWriter(fw);
+            for (int i = 0; i < repartidores.size(); i++){
+                if(i!=repartidores.size()-1){
+                    bw.write(((Repartidor)repartidores.get(i)).getNombre() + ",");
+                    bw.write(((Repartidor)repartidores.get(i)).getRestaurante());
+                    bw.newLine();
+                }else{
+                    bw.write(((Repartidor)repartidores.get(i)).getNombre() + ",");
+                    bw.write(((Repartidor)repartidores.get(i)).getRestaurante());
+                }
+               
+            }
+        }catch(Exception ex){
+        }finally{
+            try{
+                bw.close();
+                fw.close();
+            }catch(Exception ex){
+                
+            }
+        }  
+    }
+    
+    public MultiGraph createGraph(){
+        MultiGraph temp =new MultiGraph("temp");
+        temp.setStrict(false);
+        temp.setAutoCreate( true );
+        Random r= new Random();
+        String id = "";
+        int rand = 0;
+        boolean existe;
+        ArrayList<String> ids = new ArrayList();
+        for (int i = 0; i < restaurantes.size(); i++) {
+            for (int j = 0; j < colonias.size(); j++) {
+                existe = false;
+                while(!existe){
+                    rand = r.nextInt(100)+1;
+                    id = "" + rand + " km";
+                    existe = idExists(id,ids); 
+                    if(existe){
+                        ids.add(id);
+                    }                  
+                }
+                temp.addEdge(id, ((Restaurante)restaurantes.get(i)).getNombre(), colonias.get(j).toString());
+                temp.getEdge(id).addAttribute("distance", rand);
+            }
+        }
+        return temp;
+    }
+    
+    public void showGraph(double zoomValue,MultiGraph map){//Metodo para hacer el display del grafo
+        Viewer CLAgraphViewer = new Viewer(map,Viewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
+        View view = CLAgraphViewer.addDefaultView(true);
+        CLAgraphViewer.enableAutoLayout();
+        ProxyPipe viewerPipe = CLAgraphViewer.newViewerPipe();
+        viewerPipe.addAttributeSink(map);
+//        view.getCamera().setViewCenter(1,1,-1);
+//        view.getCamera().setViewPercent(zoomValue);//Zoom de la camara del grafo
+        CLAgraphViewer.setCloseFramePolicy(Viewer.CloseFramePolicy.CLOSE_VIEWER);//metodo que ayuda a que el programa no se cierre cuando uno sale del grafo
+    }
+    
+    public boolean idExists(String id,ArrayList<String> ids){
+        for (String edge : ids) {
+            if(edge.equals(id)){
+                return false;
+            }
+        }
+        return true;
     }
 }

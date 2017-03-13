@@ -25,12 +25,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         m = new Graph();
         restaurantes = m.getRestaurantes();
-        for (int i = 0; i < restaurantes.size(); i++) {
-            System.out.println(((Restaurante)restaurantes.get(i)).getNombre());
-            for (int j = 0; j < ((Restaurante)restaurantes.get(i)).getRepartidores().size(); j++) {
-                System.out.println(((Restaurante)restaurantes.get(i)).getRepartidores().get(j).getNombre());
-            }
-        }
+        repartidores = m.getRepartidores();
     }
 
     /**
@@ -102,6 +97,11 @@ public class Main extends javax.swing.JFrame {
         jButton4.setText("Retirar Orden");
 
         jButton6.setText("Ver Rutas");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainMenuLayout = new javax.swing.GroupLayout(mainMenu.getContentPane());
         mainMenu.getContentPane().setLayout(mainMenuLayout);
@@ -539,10 +539,16 @@ public class Main extends javax.swing.JFrame {
             if (((Restaurante)restaurantes.get(i)).getNombre().equals(cb_AsignarRestaurante.getSelectedItem().toString())) {
                 Repartidor nuevo_repartidor = new Repartidor(txtf_NombreRepartidor.getText(), cb_AsignarRestaurante.getSelectedItem().toString());
                 ((Restaurante)restaurantes.get(i)).addRepartidores(nuevo_repartidor);
+                repartidores.insert(nuevo_repartidor, repartidores.size());
+                m.writeRepartidores(repartidores);
                 JOptionPane.showMessageDialog(null, "Repartidor Registrado");
             }
         }
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        m.showGraph(0, m.getMap());
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -619,6 +625,7 @@ public class Main extends javax.swing.JFrame {
     Graph m;
     TDAVSArray colonias;
     TDAVSArray restaurantes;
+    TDAVSArray repartidores;
     double costo;
     double costo_pizza;
     int cont_Alitas = 0;
