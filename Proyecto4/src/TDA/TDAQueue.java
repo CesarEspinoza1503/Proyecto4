@@ -35,7 +35,7 @@ public class TDAQueue {
             size++;
             return true;
         }
-        queue[size-1] = Data;
+        queue[size] = Data;
         size ++;
         return true;
     }

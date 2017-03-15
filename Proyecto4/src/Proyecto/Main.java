@@ -7,6 +7,7 @@ package Proyecto;
 
 import TDA.TDAQueue;
 import TDA.TDAVSArray;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.DefaultComboBoxModel;
@@ -24,7 +25,13 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        this.lista_ordenes = new TDAQueue();
+        File archivo_ordenes = new File("Ordenes.txt");
+        if (archivo_ordenes.exists()) {
+            Orden cargar_ordenes = new Orden();
+            this.lista_ordenes = cargar_ordenes.cargarOrdenes();
+        }else{
+            this.lista_ordenes = new TDAQueue();
+        }
         this.codigo_orden = lista_ordenes.getSize();
         initComponents();
         m = new Graph();
@@ -83,7 +90,7 @@ public class Main extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Bt_SalirPrograma = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         jToggleButton1.setText("Crear Orden");
@@ -184,7 +191,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(79, 79, 79)))
                 .addGroup(vistaRestaurantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, Short.MAX_VALUE))
                 .addGap(58, 58, 58))
         );
         vistaRestaurantesLayout.setVerticalGroup(
@@ -366,16 +373,15 @@ public class Main extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cb_AsignarRestaurante, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtf_NombreRepartidor, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cb_AsignarRestaurante, 0, 142, Short.MAX_VALUE)
-                            .addComponent(txtf_NombreRepartidor)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
                         .addComponent(jButton7)))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
@@ -397,7 +403,7 @@ public class Main extends javax.swing.JFrame {
         crearRepartidor.getContentPane().setLayout(crearRepartidorLayout);
         crearRepartidorLayout.setHorizontalGroup(
             crearRepartidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         crearRepartidorLayout.setVerticalGroup(
             crearRepartidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -413,6 +419,11 @@ public class Main extends javax.swing.JFrame {
         jLabel11.setText("Colonia de entrega");
 
         jButton8.setText("Continuar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -471,10 +482,17 @@ public class Main extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("PIZZA HOT");
+        setLocation(new java.awt.Point(0, 0));
 
         jLabel1.setText("Pizza Delivery");
 
-        jButton1.setText("Salir");
+        Bt_SalirPrograma.setText("Salir");
+        Bt_SalirPrograma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Bt_SalirProgramaActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Iniciar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -492,7 +510,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Bt_SalirPrograma, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(141, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -503,11 +521,12 @@ public class Main extends javax.swing.JFrame {
                 .addGap(73, 73, 73)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(Bt_SalirPrograma)
                 .addGap(48, 48, 48))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
@@ -524,15 +543,20 @@ public class Main extends javax.swing.JFrame {
     private void listaRestaurantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaRestaurantesMouseClicked
         DefaultListModel modelo2 = new DefaultListModel();
         ArrayList<Repartidor> reps= ((Restaurante)restaurantes.get(listaRestaurantes.getSelectedIndex())).getRepartidores();
+        reps = quicksort(reps, 0, reps.size()-1);
         for (int i = 0; i < reps.size(); i++) {
-            modelo2.addElement(reps.get(i));
+            if (reps.get(i).isAvailable()) {
+                modelo2.addElement(reps.get(i));
+            }
         }
         listaRepartidores.setModel(modelo2);
     }//GEN-LAST:event_listaRestaurantesMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         mainMenu.pack();
+        mainMenu.setLocationRelativeTo(this);
         mainMenu.setVisible(true);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
@@ -587,14 +611,15 @@ public class Main extends javax.swing.JFrame {
                 + (int)sp_CantidadPizza.getValue() + " Lps."
                 + costo_pizza * (int)sp_CantidadPizza.getValue();
         if (cont_Alitas >0) {
-            texto += "\tHot Wings\t" + cont_Alitas*6 + "Lps." + cont_Alitas * 129;
+            texto += "\tHot Wings\t" + cont_Alitas*6 + " Lps." + cont_Alitas * 129;
         }
         if (cont_Palitroques >0) {
-            texto += "\tHot Palitroques\t" + cont_Palitroques*6 + "Lps." + cont_Palitroques * 59;
+            texto += "\tHot Palitroques\t" + cont_Palitroques*6 + " Lps." + cont_Palitroques * 59;
         }
         Orden orden = new Orden("Orden #" + codigo_orden + r.nextInt(23) , texto, Double.parseDouble(label_costoTotal.getText()));
         codigo_orden ++;
         lista_ordenes.Queue(orden);
+        orden.salvarOrdenes(orden);
         JOptionPane.showMessageDialog(null,"Orden creada.");
         crearOrden.dispose();
         cb_tipoPizza.setSelectedIndex(0);
@@ -660,6 +685,7 @@ public class Main extends javax.swing.JFrame {
         int pizza_selection = cb_tipoPizza.getSelectedIndex();
         costo_pizza = temp.pizzaCost(pizza_selection);
         costo += costo_pizza * (int)sp_CantidadPizza.getValue();
+        label_costoTotal.setText(Double.toString(costo));
     }//GEN-LAST:event_sp_CantidadPizzaStateChanged
 
     private void sp_CantidadPizzaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sp_CantidadPizzaMouseClicked
@@ -668,6 +694,7 @@ public class Main extends javax.swing.JFrame {
         int pizza_selection = cb_tipoPizza.getSelectedIndex();
         costo_pizza = temp.pizzaCost(pizza_selection);
         costo += costo_pizza * (int)sp_CantidadPizza.getValue();
+        label_costoTotal.setText(Double.toString(costo));
     }//GEN-LAST:event_sp_CantidadPizzaMouseClicked
 
     private void sp_CantidadPizzaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sp_CantidadPizzaKeyReleased
@@ -676,7 +703,25 @@ public class Main extends javax.swing.JFrame {
         int pizza_selection = cb_tipoPizza.getSelectedIndex();
         costo_pizza = temp.pizzaCost(pizza_selection);
         costo += costo_pizza * (int)sp_CantidadPizza.getValue();
+        label_costoTotal.setText(Double.toString(costo));
     }//GEN-LAST:event_sp_CantidadPizzaKeyReleased
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        
+        //ESte es el llamado al THREAD
+        //OCUPA SER MOVIDO Y LLAMARSE DESPUES DE OBTENER RUTA Y REPARTIDOR
+        //mandarRepartidor(((Restaurante)restaurantes.get(0)), 0);;
+        
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void Bt_SalirProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_SalirProgramaActionPerformed
+        // TODO add your handling code here:
+        int comfirmacion = JOptionPane.showConfirmDialog(this, "¿Desea cerrar el programa?");
+        if (comfirmacion == 0) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_Bt_SalirProgramaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -709,11 +754,15 @@ public class Main extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Main().setVisible(true);
+                if (EXIT_ON_CLOSE == 0) {
+                    
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Bt_SalirPrograma;
     private javax.swing.JButton bt_Alitas;
     private javax.swing.JButton bt_Cancelar;
     private javax.swing.JButton bt_Palitroques;
@@ -722,7 +771,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_tipoPizza;
     private javax.swing.JDialog crearOrden;
     private javax.swing.JDialog crearRepartidor;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -768,4 +816,77 @@ public class Main extends javax.swing.JFrame {
     int cont_Palitroques = 0;
     TDAQueue lista_ordenes;
     int codigo_orden;
-}
+    
+    
+        /*
+        *                       THREAD
+        *   ESTE THREAD HACE UNA SIMULACION DE TIEMPO DE IDA Y VUELTA DE UN
+        *   REPARTIDOR. INDICANDO CUANDO SE VA Y CUANDO VUELVE
+        *
+        *   ESTE THREAD SE PUEDE MOVER A CUALQUIER OTRA FUNCION.  
+        */
+    void mandarRepartidor(Restaurante restauranteAsignado, int p){
+        new Thread(){
+            @Override
+            public void run(){
+                restauranteAsignado.getRepartidores().get(p).setAvailable(true);
+                if (restauranteAsignado.getRepartidores().get(p).isAvailable()) {
+
+                    try {
+                        restauranteAsignado.getRepartidores().get(p).setAvailable(false);
+                        
+                        JOptionPane.showMessageDialog(null, "El repartidor fue enviado: " 
+                                + restauranteAsignado.getRepartidores().get(p).getNombre() +".");
+                        
+                        Thread.sleep(10000);
+                        
+                        JOptionPane.showMessageDialog(null, "El repartidor regreso: " 
+                                + restauranteAsignado.getRepartidores().get(p).getNombre() +".");
+                        
+                    } catch (InterruptedException ex) {
+                    }
+                }
+            }
+        }.start();
+    }
+    
+    
+    
+    //          ALGORITMO DE ORDENAMIENTO VISTO EN CLASE
+    ArrayList<Repartidor> quicksort(ArrayList lista, int izq, int der){
+        int pivote = ((Repartidor)lista.get(izq)).getNombre().charAt(0);
+        Repartidor temp_pivote  = (Repartidor)lista.get(izq);
+        int i = izq;
+        int j = der;
+        Repartidor temp;
+        
+        while(i < j){
+            while(((Repartidor)lista.get(i)).getNombre().charAt(0) <= pivote && i<j){
+                i++;
+            }
+            while(((Repartidor)lista.get(j)).getNombre().charAt(0) > pivote){
+                j--;
+            }
+            if (i < j) {
+                temp = ((Repartidor)lista.get(i));
+                lista.add(i ,(Repartidor)lista.get(j));
+                lista.remove(i+1);
+                lista.add(j, temp);
+                lista.remove(j+1);
+            }
+        }
+        lista.add(izq, (Repartidor)lista.get(j));
+        lista.remove(izq+1);
+        lista.add(j, temp_pivote);
+        lista.remove(j+1);
+        if (izq < j -1) {
+            quicksort(lista, izq, j-1);
+        }
+        if (j+1 < der) {
+            quicksort(lista, j+1, der);
+        }
+        return lista;
+    }
+
+    
+}//Fin del todo el mainFrame    

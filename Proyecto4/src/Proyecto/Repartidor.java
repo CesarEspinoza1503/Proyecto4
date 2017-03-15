@@ -5,11 +5,15 @@
  */
 package Proyecto;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author TFK
  */
-public class Repartidor extends Persona {
+public class Repartidor extends Persona{
     boolean available;
     String restaurante;
     
@@ -51,6 +55,5 @@ public class Repartidor extends Persona {
     public String toString() {
         return nombre;
     }
-    
     
 }
