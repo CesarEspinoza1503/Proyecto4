@@ -90,7 +90,7 @@ public class Orden {
         return codigo;
     }
     
-    public void salvarOrdenes(Orden Orden_aSalvar){
+    public void salvarOrden(Orden Orden_aSalvar){
         File archivo = new File("Ordenes.txt");
         FileWriter fw = null;
         BufferedWriter bw = null;
@@ -111,6 +111,35 @@ public class Orden {
                 bw.close();
                 fw.close();
             } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    
+    public void guardarOrdenes(TDAQueue lista_ordenes){
+        File archivo = new File("Ordenes.txt");
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        Orden temp;
+        try{
+            fw = new FileWriter(archivo);
+            bw = new BufferedWriter(fw);
+            
+            while(!lista_ordenes.isEmpty()){
+                temp = (Orden)lista_ordenes.Dequeue();
+                bw.write(temp.getCodigo() + ",");
+                bw.write(temp.getProducto() + ",");
+                bw.write(Double.toString(temp.getTotal()));
+                bw.newLine();
+                bw.flush();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }finally{
+            try{
+                bw.close();
+                fw.close();
+            }catch(IOException ex){
                 ex.printStackTrace();
             }
         }

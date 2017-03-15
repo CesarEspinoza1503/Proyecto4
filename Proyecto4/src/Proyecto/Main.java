@@ -619,7 +619,7 @@ public class Main extends javax.swing.JFrame {
         Orden orden = new Orden("Orden #" + codigo_orden + r.nextInt(23) , texto, Double.parseDouble(label_costoTotal.getText()));
         codigo_orden ++;
         lista_ordenes.Queue(orden);
-        orden.salvarOrdenes(orden);
+        orden.salvarOrden(orden);
         JOptionPane.showMessageDialog(null,"Orden creada.");
         crearOrden.dispose();
         cb_tipoPizza.setSelectedIndex(0);
@@ -654,6 +654,7 @@ public class Main extends javax.swing.JFrame {
                 repartidores.insert(nuevo_repartidor, repartidores.size());
                 m.writeRepartidores(repartidores);
                 JOptionPane.showMessageDialog(null, "Repartidor Registrado");
+                txtf_NombreRepartidor.setText("");
             }
         }
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -711,14 +712,16 @@ public class Main extends javax.swing.JFrame {
         
         //ESte es el llamado al THREAD
         //OCUPA SER MOVIDO Y LLAMARSE DESPUES DE OBTENER RUTA Y REPARTIDOR
-        //mandarRepartidor(((Restaurante)restaurantes.get(0)), 0);;
-        
+        mandarRepartidor(((Restaurante)restaurantes.get(0)), 0);;
+        lista_ordenes.Dequeue();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void Bt_SalirProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_SalirProgramaActionPerformed
         // TODO add your handling code here:
         int comfirmacion = JOptionPane.showConfirmDialog(this, "¿Desea cerrar el programa?");
         if (comfirmacion == 0) {
+            Orden guardar = new Orden();
+            guardar.guardarOrdenes(lista_ordenes);
             System.exit(0);
         }
     }//GEN-LAST:event_Bt_SalirProgramaActionPerformed
