@@ -157,7 +157,6 @@ public class Orden {
             while((texto=br.readLine())!=null){
                 String[] tokens = texto.split(",");
                 Orden orden_temp = new Orden(tokens[0], tokens[1], Double.parseDouble(tokens[2]));
-                System.out.println(tokens[0] + tokens[1] + tokens[2]);
                 ordenes.Queue(orden_temp);
             }
         } catch (IOException ex) {

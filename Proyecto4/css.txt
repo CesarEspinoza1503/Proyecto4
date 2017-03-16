@@ -1,0 +1,40 @@
+graph {
+	
+	fill-mode: gradient-vertical; fill-color: black, blue, blue, blue, blue, black;	
+}
+node {
+	size-mode: fit;
+	stroke-mode: plain; padding: 3px, 2px;
+	shape: rounded-box;
+	stroke-width: 2px;
+	stroke-color: white;
+	text-alignment:center;
+	size: 17px;
+
+	fill-color:black;
+	text-visibility-mode: normal;
+	
+	text-color:gray;
+	
+	text-style: bold;
+
+}
+edge{
+	
+	text-color:black;
+	text-background-mode:rounded-box;
+	text-background-color: gray;
+	text-alignment:along;
+	shape: angle; 
+	fill-color: blue;
+	size: 1px;
+
+	arrow-shape:none;
+
+	arrow-size:3,3;
+
+}
+node:selected{
+	
+}
+
