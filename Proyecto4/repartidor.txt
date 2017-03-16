@@ -28,5 +28,3 @@ Sebastian,Pizza Hot Norte
 Nelson,Pizza Hot Orginal
 Raul,Pizza Hot Oeste
 Roberto,Pizza Hot Orginal
-Alberto,Pizza Hot Orginal
-Nairo,Pizza Hot Norte

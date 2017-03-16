@@ -212,7 +212,7 @@ public final class Graph {
             for (int j = 0; j < colonias.size(); j++) {
                 existe = false;
                 while(!existe){
-                    rand = r.nextInt(1000)+1;
+                    rand = r.nextInt(100)+1;
                     id = "" + rand + " km";
                     existe = idExists(id,ids); 
                     if(existe){
@@ -266,9 +266,7 @@ public final class Graph {
             DijkstraDistance(restaurant,colonia);
             for(Edge e:map.getEachEdge()) {
                 if(e.getNode0() == restaurant && e.getNode1()==colonia){
-                    System.out.println("lol");
                     distancias.add((int)e.getAttribute("distance"));
-                    System.out.println((int)e.getAttribute("distance"));
                  }
             }
         }
@@ -280,7 +278,7 @@ public final class Graph {
             }
         }
         temp = ((Restaurante)restaurantes.get(index)).getNombre();
-        
+
         return temp;
     }
     
@@ -303,13 +301,13 @@ public final class Graph {
     
     public void applyChanges(Node restaurante,boolean defaul){
         for (Edge edge : map.getEachEdge()) {
-            edge.addAttribute("ui.style", "fill-color: blue;");
+            edge.addAttribute("ui.style", "fill-color: gray;");
             edge.addAttribute("ui.label", "");
         }
         if(!defaul){
             for (Edge edge : map.getEachEdge()) {
                 if(edge.getNode0() == restaurante){
-                    edge.addAttribute("ui.style", "fill-color: white; text-color:black; shape: cubic-curve; size:3px;");
+                    edge.addAttribute("ui.style", "fill-color: white; text-color:black; shape: cubic-curve; size:2px;");
                     edge.addAttribute("ui.label", edge.getId());
                 }
             }

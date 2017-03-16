@@ -418,7 +418,7 @@ public class Main extends javax.swing.JFrame {
         bt_Cancelar.setBackground(new java.awt.Color(255, 0, 0));
         bt_Cancelar.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         bt_Cancelar.setForeground(new java.awt.Color(255, 255, 0));
-        bt_Cancelar.setText("Cancelar");
+        bt_Cancelar.setText("Reset");
         bt_Cancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         bt_Cancelar.setContentAreaFilled(false);
         bt_Cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -1083,16 +1083,22 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         //Boton Crear Repartidor
-        for (int i = 0; i < restaurantes.size(); i++) {
-            if (((Restaurante)restaurantes.get(i)).getNombre().equals(cb_AsignarRestaurante.getSelectedItem().toString())) {
-                Repartidor nuevo_repartidor = new Repartidor(txtf_NombreRepartidor.getText(), cb_AsignarRestaurante.getSelectedItem().toString());
-                ((Restaurante)restaurantes.get(i)).addRepartidores(nuevo_repartidor);
-                repartidores.insert(nuevo_repartidor, repartidores.size());
-                map.writeRepartidores(repartidores);
-                JOptionPane.showMessageDialog(null, "Repartidor Registrado");
-                txtf_NombreRepartidor.setText("");
+        if("".equals(txtf_NombreRepartidor.getText())){
+            JOptionPane.showMessageDialog(null, "Tiene que ingresar un nombre en el espacio dado.");
+        }else{
+            for (int i = 0; i < restaurantes.size(); i++) {
+                if (((Restaurante)restaurantes.get(i)).getNombre().equals(cb_AsignarRestaurante.getSelectedItem().toString())) {
+                    Repartidor nuevo_repartidor = new Repartidor(txtf_NombreRepartidor.getText(), cb_AsignarRestaurante.getSelectedItem().toString());
+                    ((Restaurante)restaurantes.get(i)).addRepartidores(nuevo_repartidor);
+                    repartidores.insert(nuevo_repartidor, repartidores.size());
+                    map.writeRepartidores(repartidores);
+                    JOptionPane.showMessageDialog(null, "Repartidor Registrado");
+                    txtf_NombreRepartidor.setText("");
+                }
             }
+            crearRepartidor.dispose();
         }
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -1146,7 +1152,6 @@ public class Main extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // Metodo Dijkstra 
         String mejorRuta = map.mejorRuta(map.getMap().getNode(cb_colonia.getSelectedItem().toString()));
-        System.out.println(mejorRuta);
         index = 0;
         for (int i = 0; i < restaurantes.size(); i++) {
             if(mejorRuta.equals(((Restaurante)restaurantes.get(i)).getNombre())){
@@ -1180,6 +1185,8 @@ public class Main extends javax.swing.JFrame {
         //OCUPA SER MOVIDO Y LLAMARSE DESPUES DE OBTENER RUTA Y REPARTIDOR
         mandarRepartidor(((Restaurante)restaurantes.get(index)), cb_repartidores.getSelectedIndex());
         lista_ordenes.Dequeue();
+        mandarRepartidor.dispose();
+        retirarOrden.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
