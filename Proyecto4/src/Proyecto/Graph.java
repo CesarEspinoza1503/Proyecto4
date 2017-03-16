@@ -47,13 +47,8 @@ public final class Graph {
         System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
         map.addAttribute("ui.quality");
         map.addAttribute("ui.stylesheet", readCSS());
-        for (Node node : map.getEachNode()) {
-            for (int i = 0; i < restaurantes.size(); i++) {
-                if(node.getId().equals(((Restaurante)restaurantes.get(i)).getNombre())){
-                    node.addAttribute("ui.style", "fill-mode: image-scaled; fill-image: url('./pizza.png'); text-alignment:right; stroke-mode: none; size: 30px;");
-                }
-            }
-        }
+        putImages();
+        
     }
     
     public MultiGraph getMap() {
@@ -316,6 +311,19 @@ public final class Graph {
                 if(edge.getNode0() == restaurante){
                     edge.addAttribute("ui.style", "fill-color: white; text-color:black; shape: cubic-curve; size:3px;");
                     edge.addAttribute("ui.label", edge.getId());
+                }
+            }
+        }
+    }
+    
+    public void putImages(){
+        for (Node node : map.getEachNode()) {
+            node.addAttribute("ui.style", "fill-mode: image-scaled; fill-image: url('./house.png'); text-alignment:right; stroke-mode: none; size: 30px;");
+        }
+        for (Node node : map.getEachNode()) {
+            for (int i = 0; i < restaurantes.size(); i++) {
+                if(node.getId().equals(((Restaurante)restaurantes.get(i)).getNombre())){
+                    node.addAttribute("ui.style", "fill-mode: image-scaled; fill-image: url('./pizza.png'); text-alignment:right; stroke-mode: none; size: 30px;");  
                 }
             }
         }

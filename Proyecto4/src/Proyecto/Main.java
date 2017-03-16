@@ -123,7 +123,7 @@ public class Main extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(255, 0, 0));
         jButton3.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 0));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/delivery-man.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delivery-man.png"))); // NOI18N
         jButton3.setText("Registrar Repartidor");
         jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton3.setContentAreaFilled(false);
@@ -136,7 +136,7 @@ public class Main extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(255, 0, 0));
         jButton4.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 0));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/pizza (1).png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pizza (1).png"))); // NOI18N
         jButton4.setText("Retirar Orden");
         jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton4.setContentAreaFilled(false);
@@ -162,7 +162,7 @@ public class Main extends javax.swing.JFrame {
         jToggleButton2.setBackground(new java.awt.Color(255, 0, 0));
         jToggleButton2.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         jToggleButton2.setForeground(new java.awt.Color(255, 255, 0));
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/rest.png"))); // NOI18N
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/rest.png"))); // NOI18N
         jToggleButton2.setText("Lista de restaurantes");
         jToggleButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jToggleButton2.setContentAreaFilled(false);
@@ -175,7 +175,7 @@ public class Main extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(255, 0, 0));
         jButton6.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 0));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/distance-to-travel-between-two-points.png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/distance-to-travel-between-two-points.png"))); // NOI18N
         jButton6.setText("Ver Rutas");
         jButton6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton6.setContentAreaFilled(false);
@@ -192,7 +192,7 @@ public class Main extends javax.swing.JFrame {
         jButton9.setBackground(new java.awt.Color(255, 0, 0));
         jButton9.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 0));
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/settings.png"))); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/settings.png"))); // NOI18N
         jButton9.setText("Opciones Rutas");
         jButton9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton9.setContentAreaFilled(false);
@@ -895,7 +895,7 @@ public class Main extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 255, 0));
         jButton2.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 0));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/power-button.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/power-button.png"))); // NOI18N
         jButton2.setText("Iniciar");
         jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.setContentAreaFilled(false);
@@ -908,7 +908,7 @@ public class Main extends javax.swing.JFrame {
         Bt_SalirPrograma.setBackground(new java.awt.Color(204, 255, 51));
         Bt_SalirPrograma.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         Bt_SalirPrograma.setForeground(new java.awt.Color(255, 255, 0));
-        Bt_SalirPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/icon.png"))); // NOI18N
+        Bt_SalirPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icon.png"))); // NOI18N
         Bt_SalirPrograma.setText("Salir");
         Bt_SalirPrograma.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         Bt_SalirPrograma.setContentAreaFilled(false);
@@ -918,7 +918,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/motorcycle.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/motorcycle.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);

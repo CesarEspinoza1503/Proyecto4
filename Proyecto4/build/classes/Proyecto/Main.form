@@ -101,7 +101,7 @@
                   <Color blue="0" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Proyecto/delivery-man.png"/>
+                  <Image iconType="3" name="/Images/delivery-man.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Registrar Repartidor"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -127,7 +127,7 @@
                   <Color blue="0" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Proyecto/pizza (1).png"/>
+                  <Image iconType="3" name="/Images/pizza (1).png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Retirar Orden"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -179,7 +179,7 @@
                   <Color blue="0" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Proyecto/rest.png"/>
+                  <Image iconType="3" name="/Images/rest.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Lista de restaurantes"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -205,7 +205,7 @@
                   <Color blue="0" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Proyecto/distance-to-travel-between-two-points.png"/>
+                  <Image iconType="3" name="/Images/distance-to-travel-between-two-points.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ver Rutas"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -242,7 +242,7 @@
                   <Color blue="0" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Proyecto/settings.png"/>
+                  <Image iconType="3" name="/Images/settings.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Opciones Rutas"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -1526,7 +1526,7 @@
               <Color blue="0" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Proyecto/power-button.png"/>
+              <Image iconType="3" name="/Images/power-button.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Iniciar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -1552,7 +1552,7 @@
               <Color blue="0" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Proyecto/icon.png"/>
+              <Image iconType="3" name="/Images/icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -1569,7 +1569,7 @@
         <Component class="javax.swing.JLabel" name="jLabel14">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Proyecto/motorcycle.png"/>
+              <Image iconType="3" name="/Images/motorcycle.png"/>
             </Property>
           </Properties>
         </Component>
