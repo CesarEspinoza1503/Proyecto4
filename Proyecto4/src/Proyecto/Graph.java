@@ -137,7 +137,7 @@ public final class Graph {
         FileReader fr = null;
         BufferedReader br= null;
         File file;
-        file = new File("./repartidores.txt");
+        file = new File("./repartidor.txt");
         ArrayList<String> listaRepartidores = new ArrayList();
         try{
             fr = new FileReader(file);

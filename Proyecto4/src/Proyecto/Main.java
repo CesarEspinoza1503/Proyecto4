@@ -309,9 +309,10 @@ public class Main extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
@@ -708,6 +709,11 @@ public class Main extends javax.swing.JFrame {
         cb_repartidores.setForeground(new java.awt.Color(255, 0, 0));
         cb_repartidores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cb_repartidores.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cb_repartidores.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_repartidoresItemStateChanged(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 0, 0));
@@ -882,7 +888,7 @@ public class Main extends javax.swing.JFrame {
             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Pizza Delivery");
         setLocation(new java.awt.Point(0, 0));
 
@@ -958,7 +964,7 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -970,12 +976,13 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        DefaultListModel modelo = new DefaultListModel();
+        DefaultListModel modelo_lista = new DefaultListModel();
         for (int i = 0; i < restaurantes.size(); i++) {
-            modelo.addElement(restaurantes.get(i));
+            modelo_lista.addElement(restaurantes.get(i));
         }
-        listaRestaurantes.setModel(modelo);
+        listaRestaurantes.setModel(modelo_lista);
         vistaRestaurantes.pack();
+        vistaRestaurantes.setLocationRelativeTo(null);
         vistaRestaurantes.setVisible(true);
         
     }//GEN-LAST:event_jToggleButton2ActionPerformed
@@ -1001,6 +1008,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         crearOrden.pack();
+        crearOrden.setLocationRelativeTo(null);
         crearOrden.setVisible(true);
         costo = 0;
         costo_pizza = 0;
@@ -1079,6 +1087,7 @@ public class Main extends javax.swing.JFrame {
         }
         cb_AsignarRestaurante.setModel(modelo);
         crearRepartidor.setVisible(true);
+        crearRepartidor.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -1118,6 +1127,7 @@ public class Main extends javax.swing.JFrame {
             cb_colonia.setModel(modelo);
             ordenSiguiente.setText(lista_ordenes.peek().toString());
             retirarOrden.pack();
+            retirarOrden.setLocationRelativeTo(null);
             retirarOrden.setVisible(true);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -1166,6 +1176,7 @@ public class Main extends javax.swing.JFrame {
         }
         textRestaurante.setText(mejorRuta);
         mandarRepartidor.pack();
+        mandarRepartidor.setLocationRelativeTo(null);
         mandarRepartidor.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -1183,7 +1194,8 @@ public class Main extends javax.swing.JFrame {
         //mandar al repartidor
         //ESte es el llamado al THREAD
         //OCUPA SER MOVIDO Y LLAMARSE DESPUES DE OBTENER RUTA Y REPARTIDOR
-        mandarRepartidor(((Restaurante)restaurantes.get(index)), cb_repartidores.getSelectedIndex());
+        mandarRepartidor(((Restaurante)restaurantes.get(index)), index_repartidor);
+        System.out.println(index_repartidor);
         lista_ordenes.Dequeue();
         mandarRepartidor.dispose();
         retirarOrden.dispose();
@@ -1203,6 +1215,7 @@ public class Main extends javax.swing.JFrame {
         }
         cb_opciones.setModel(modelo);
         opcionesMapa.pack();
+        opcionesMapa.setLocationRelativeTo(null);
         opcionesMapa.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -1211,6 +1224,11 @@ public class Main extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"Se ha aplicado el cambio a default.");
         opcionesMapa.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void cb_repartidoresItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_repartidoresItemStateChanged
+        // TODO add your handling code here:
+        index_repartidor = cb_repartidores.getSelectedIndex();
+    }//GEN-LAST:event_cb_repartidoresItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -1320,6 +1338,7 @@ public class Main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     Graph map;
     int index;
+    int index_repartidor;
     TDAVSArray colonias;
     TDAVSArray restaurantes;
     TDAVSArray repartidores;
@@ -1342,7 +1361,7 @@ public class Main extends javax.swing.JFrame {
         new Thread(){
             @Override
             public void run(){
-                restauranteAsignado.getRepartidores().get(index).setAvailable(true);
+                
                 if (restauranteAsignado.getRepartidores().get(index).isAvailable()) {
 
                     try {
@@ -1355,7 +1374,7 @@ public class Main extends javax.swing.JFrame {
                         
                         JOptionPane.showMessageDialog(null, "El repartidor regreso: " 
                                 + restauranteAsignado.getRepartidores().get(index).getNombre() +".");
-                        
+                        restauranteAsignado.getRepartidores().get(index).setAvailable(true);
                     } catch (InterruptedException ex) {
                     }
                 }
